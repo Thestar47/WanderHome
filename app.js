@@ -47,8 +47,6 @@ const store = MongoStore.create({
     },
     touchAfter : 24*3600,
     mongoOptions: {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
         retryWrites: true, // Add this line
     },
 });
@@ -105,6 +103,7 @@ app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/",userRouter);
 
+
 app.all("*",(req, res,next)=>{
     next(new ExpressError(404,"Page Not Found"));
 });
@@ -117,5 +116,5 @@ app.use((err,req,res,next)=>{
 });
 
 app.listen(8080,()=>{
-    console.log("Server is listening ");
+    console.log("Server is listening on 8080");
 });
